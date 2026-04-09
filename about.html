@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About · Mor Group</title>
+<meta name="description" content="Meet Aishwarya R. and Shrinali P. — the dancers behind Mor Group." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+<style>
+.about-body { padding: 6rem 4rem; background: var(--bg); }
+
+.instructor-section {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
+  margin-bottom: 6rem; padding-bottom: 6rem; border-bottom: 1px solid var(--border);
+}
+.instructor-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.instructor-section.flip { direction: rtl; }
+.instructor-section.flip > * { direction: ltr; }
+
+.instructor-photo {
+  aspect-ratio: 3/4; border-radius: 2px; overflow: hidden; position: relative;
+  display: flex; align-items: flex-end;
+}
+.instructor-photo.aishwarya {
+  background: linear-gradient(160deg, #3D6B5E, #253530);
+}
+.instructor-photo.shrinali {
+  background: linear-gradient(160deg, #3A5068, #253035);
+}
+.instructor-photo img { position: absolute; inset: 0; }
+.instructor-photo-label {
+  position: relative; z-index: 1; width: 100%;
+  padding: 3rem 1.5rem 1.5rem;
+  background: linear-gradient(to top, rgba(28,38,32,0.7), transparent);
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 1rem; color: rgba(238,242,238,0.5);
+}
+
+.instructor-text { padding-top: 0.5rem; }
+.instructor-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 400; color: var(--text);
+  margin-bottom: 0.4rem;
+}
+.instructor-role {
+  font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 2rem;
+}
+.instructor-bio p {
+  font-size: 0.95rem; color: var(--text-mid); line-height: 1.9;
+  font-weight: 300; margin-bottom: 1.1rem;
+}
+.instructor-bio p em {
+  font-family: 'Playfair Display', serif; font-style: italic; color: var(--teal);
+}
+.instructor-tags {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem;
+}
+.itag {
+  padding: 0.35rem 0.85rem; border-radius: 100px;
+  font-size: 0.63rem; letter-spacing: 0.12em; text-transform: uppercase;
+  border: 1px solid var(--teal-pale); color: var(--teal);
+}
+
+/* Philosophy */
+.philosophy {
+  background: var(--bg-dark); padding: 6rem 4rem;
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 3.5rem;
+  position: relative; overflow: hidden;
+}
+.philosophy::before {
+  content: 'मोर';
+  position: absolute; right: 2rem; top: 50%; transform: translateY(-50%);
+  font-family: serif; font-size: 18rem; color: rgba(106,158,143,0.04);
+  pointer-events: none; user-select: none; line-height: 1;
+}
+.phil-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem; color: rgba(106,158,143,0.15); line-height: 1; margin-bottom: 1rem;
+}
+.phil-divider { width: 2rem; height: 1px; background: var(--teal); margin-bottom: 1.2rem; }
+.phil-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem; color: var(--text-inv); margin-bottom: 0.7rem;
+}
+.phil-body { font-size: 0.87rem; color: rgba(238,242,238,0.37); line-height: 1.85; font-weight: 300; }
+
+@media (max-width: 820px) {
+  .about-body { padding: 4rem 1.5rem; }
+  .instructor-section { grid-template-columns: 1fr; gap: 2.5rem; margin-bottom: 4rem; padding-bottom: 4rem; }
+  .instructor-section.flip { direction: ltr; }
+  .philosophy { grid-template-columns: 1fr; padding: 5rem 1.5rem; gap: 2.5rem; }
+  .philosophy::before { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-main">Mor Group</span>
+    <span class="nav-logo-sub">Kathak · Bharatanatyam · NYC</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="classes.html">Classes</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="hamburger" aria-label="Open menu" onclick="openMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="closeMenu()">✕</button>
+  <a href="index.html"   onclick="closeMenu()">Home</a>
+  <a href="about.html"   onclick="closeMenu()">About</a>
+  <a href="classes.html" onclick="closeMenu()">Classes</a>
+  <a href="gallery.html" onclick="closeMenu()">Gallery</a>
+  <a href="contact.html" onclick="closeMenu()">Contact</a>
+</div>
+
+<div class="page-header">
+  <div class="page-header-eyebrow">The people behind Mor</div>
+  <h1>Two dancers,<br>one <em>shared language</em></h1>
+  <p class="page-header-sub">
+    Aishwarya and Shrinali bring two of India's great classical forms — Kathak and Bharatanatyam —
+    into one studio, in the heart of New York City.
+  </p>
+</div>
+
+<div class="about-body">
+
+  <!-- Aishwarya -->
+  <div class="instructor-section">
+    <div class="instructor-photo aishwarya anim">
+      <!-- ADD PHOTO: <img src="images/aishwarya.jpg" alt="Aishwarya R." /> -->
+      <div class="instructor-photo-label">Aishwarya R.</div>
+    </div>
+    <div class="instructor-text">
+      <div class="stag anim">Kathak</div>
+      <div class="instructor-name anim d1">Aishwarya R.</div>
+      <div class="instructor-role anim d1">Trained Kathak Dancer · Co-founder</div>
+      <div class="instructor-bio">
+        <p class="anim d2">
+          Aishwarya has trained in Kathak since childhood, studying under senior gurus in the
+          <em>Lucknow gharana</em> tradition. For her, Kathak is a language — one built on precision,
+          rhythm, and the quiet power of a perfectly placed pause.
+        </p>
+        <p class="anim d2">
+          She has performed across India and the United States, and brings the same rigour
+          she brings to the stage into every class she teaches. Her sessions emphasise the
+          fundamentals: <em>taal</em>, footwork, and the geometry of the body in space.
+        </p>
+        <p class="anim d3">
+          Aishwarya believes anyone can dance Kathak — the form rewards patience,
+          and patience is something she has in abundance.
+        </p>
+      </div>
+      <div class="instructor-tags anim d3">
+        <span class="itag">Kathak</span>
+        <span class="itag">Semi-Classical</span>
+        <span class="itag">Lucknow Gharana</span>
+        <span class="itag">Taal & Footwork</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shrinali -->
+  <div class="instructor-section flip">
+    <div class="instructor-photo shrinali anim">
+      <!-- ADD PHOTO: <img src="images/shrinali.jpg" alt="Shrinali P." /> -->
+      <div class="instructor-photo-label">Shrinali P.</div>
+    </div>
+    <div class="instructor-text">
+      <div class="stag anim">Bharatanatyam</div>
+      <div class="instructor-name anim d1">Shrinali P.</div>
+      <div class="instructor-role anim d1">Trained Bharatanatyam Dancer · Co-founder</div>
+      <div class="instructor-bio">
+        <p class="anim d2">
+          Shrinali's foundation is in Bharatanatyam — a form built on geometry, devotion,
+          and the expressive power of <em>abhinaya</em>. She trained formally from a young age
+          and went on to perform and teach across studios in India before moving to New York.
+        </p>
+        <p class="anim d2">
+          In her classes, she focuses on the connection between movement and meaning:
+          every hand gesture, every gaze, every shift in weight is intentional.
+          She brings that consciousness into sessions for all levels.
+        </p>
+        <p class="anim d3">
+          Shrinali also leads the fusion and semi-classical sessions, where classical
+          vocabulary meets a more contemporary feeling — always rooted, always purposeful.
+        </p>
+      </div>
+      <div class="instructor-tags anim d3">
+        <span class="itag">Bharatanatyam</span>
+        <span class="itag">Abhinaya</span>
+        <span class="itag">Fusion</span>
+        <span class="itag">Youth Classes</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Philosophy -->
+<div class="philosophy">
+  <div class="anim d1">
+    <div class="phil-num">01</div>
+    <div class="phil-divider"></div>
+    <div class="phil-title">Rooted in tradition</div>
+    <p class="phil-body">Kathak and Bharatanatyam are two of India's eight classical dance forms, each with centuries of history. We teach their vocabulary with care and deep respect.</p>
+  </div>
+  <div class="anim d2">
+    <div class="phil-num">02</div>
+    <div class="phil-divider"></div>
+    <div class="phil-title">Open to everyone</div>
+    <p class="phil-body">You don't need a background in dance to begin. Our beginner sessions welcome total newcomers — curiosity and an open mind are the only requirements.</p>
+  </div>
+  <div class="anim d3">
+    <div class="phil-num">03</div>
+    <div class="phil-divider"></div>
+    <div class="phil-title">Community first</div>
+    <p class="phil-body">Dance is a shared language. We build a space where students connect, grow together, and celebrate the joy of movement — individually and as one.</p>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <div class="footer-logo-main">Mor Group</div>
+    <div class="footer-logo-sub">Kathak · Bharatanatyam · NYC</div>
+  </div>
+  <div class="footer-copy">© 2025 Mor Group. All rights reserved.</div>
+  <ul class="footer-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="classes.html">Classes</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+function openMenu()  { document.getElementById('mobileMenu').classList.add('open'); }
+function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+const anims = document.querySelectorAll('.anim');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+anims.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

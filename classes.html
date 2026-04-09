@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Classes · Mor Group</title>
+<meta name="description" content="Upcoming Kathak and Bharatanatyam classes from Mor Group in NYC." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+<style>
+.classes-body { background: var(--bg); padding: 5rem 4rem; }
+
+/* Filter tabs */
+.filter-bar {
+  display: flex; align-items: center; gap: 0.6rem;
+  margin-bottom: 3.5rem; flex-wrap: wrap;
+}
+.filter-btn {
+  padding: 0.4rem 1rem; border-radius: 100px;
+  font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+  border: 1px solid var(--border); color: var(--text-muted);
+  background: none; cursor: pointer; font-family: 'Jost', sans-serif;
+  transition: all 0.2s;
+}
+.filter-btn:hover,
+.filter-btn.active { border-color: var(--teal); color: var(--teal); background: rgba(74,124,111,0.06); }
+
+/* Class list */
+.class-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+
+.class-row {
+  background: var(--bg);
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr auto;
+  align-items: center; gap: 1.5rem;
+  padding: 1.75rem 2rem;
+  transition: background 0.2s; cursor: pointer;
+}
+.class-row:hover { background: var(--bg-alt); }
+
+.class-row-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; font-weight: 400; color: var(--text); margin-bottom: 0.25rem;
+}
+.class-row-style {
+  font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal);
+}
+.class-row-day { font-size: 0.88rem; color: var(--text-mid); font-weight: 300; }
+.class-row-time { font-size: 0.88rem; color: var(--text-mid); font-weight: 300; }
+.class-row-level {
+  display: inline-block; padding: 0.25rem 0.75rem; border-radius: 100px;
+  font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+  border: 1px solid var(--teal-pale); color: var(--teal); white-space: nowrap;
+}
+.class-row-book {
+  font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--teal); white-space: nowrap; display: flex; align-items: center; gap: 0.4rem;
+  transition: gap 0.2s;
+}
+.class-row:hover .class-row-book { gap: 0.7rem; }
+
+/* Detail cards below the list */
+.class-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-top: 4rem; }
+.class-card {
+  background: var(--bg-dark); border-radius: 2px; overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.class-card-color {
+  height: 6px;
+}
+.card-kathak    .class-card-color { background: var(--teal); }
+.card-bharata   .class-card-color { background: var(--indigo, #4B5E7A); }
+.card-fusion    .class-card-color { background: var(--gold); }
+.card-youth     .class-card-color { background: var(--teal-light); }
+.card-private   .class-card-color { background: rgba(106,158,143,0.4); }
+
+.class-card-body { padding: 1.75rem; flex: 1; display: flex; flex-direction: column; gap: 0.85rem; }
+.class-card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem; font-weight: 400; color: var(--text-inv);
+}
+.class-card-meta { font-size: 0.8rem; color: rgba(238,242,238,0.4); font-weight: 300; line-height: 1.6; }
+.class-card-meta span { display: block; }
+.class-card-desc {
+  font-size: 0.85rem; color: rgba(238,242,238,0.35);
+  line-height: 1.75; font-weight: 300; flex: 1;
+}
+.class-card-footer {
+  padding: 1.25rem 1.75rem; border-top: 1px solid rgba(106,158,143,0.12);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.class-card-level {
+  font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--teal-light); opacity: 0.7;
+}
+.class-card-link {
+  font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--teal-light); transition: opacity 0.2s;
+}
+.class-card-link:hover { opacity: 0.7; }
+
+/* Private note */
+.private-note {
+  background: var(--bg-alt); border: 1px solid var(--border);
+  border-radius: 2px; padding: 3rem; margin-top: 4rem;
+  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 3rem;
+}
+.private-note h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 400; color: var(--text); margin-bottom: 0.6rem;
+}
+.private-note p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; font-weight: 300; }
+
+@media (max-width: 820px) {
+  .classes-body { padding: 4rem 1.5rem; }
+  .class-row { grid-template-columns: 1fr auto; gap: 0.75rem; }
+  .class-row-day, .class-row-time, .class-row-level { display: none; }
+  .class-cards { grid-template-columns: 1fr; }
+  .private-note { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-main">Mor Group</span>
+    <span class="nav-logo-sub">Kathak · Bharatanatyam · NYC</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="classes.html" class="active">Classes</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="hamburger" aria-label="Open menu" onclick="openMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="closeMenu()">✕</button>
+  <a href="index.html"   onclick="closeMenu()">Home</a>
+  <a href="about.html"   onclick="closeMenu()">About</a>
+  <a href="classes.html" onclick="closeMenu()">Classes</a>
+  <a href="gallery.html" onclick="closeMenu()">Gallery</a>
+  <a href="contact.html" onclick="closeMenu()">Contact</a>
+</div>
+
+<div class="page-header">
+  <div class="page-header-eyebrow">What we teach</div>
+  <h1>Upcoming <em>Classes</em></h1>
+  <p class="page-header-sub">
+    All classes are held in a small-group setting in New York City.
+    First class is always complimentary — just bring yourself.
+  </p>
+</div>
+
+<div class="classes-body">
+
+  <!-- Filter bar -->
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterClass(this,'all')">All</button>
+    <button class="filter-btn" onclick="filterClass(this,'kathak')">Kathak</button>
+    <button class="filter-btn" onclick="filterClass(this,'bharatanatyam')">Bharatanatyam</button>
+    <button class="filter-btn" onclick="filterClass(this,'fusion')">Fusion</button>
+    <button class="filter-btn" onclick="filterClass(this,'youth')">Youth</button>
+  </div>
+
+  <!-- Schedule list -->
+  <div class="class-list anim">
+
+    <div class="class-row" data-type="kathak" onclick="location.href='contact.html'">
+      <div>
+        <div class="class-row-name">Kathak Foundations</div>
+        <div class="class-row-style">Kathak · with Aishwarya</div>
+      </div>
+      <div class="class-row-day">Sunday</div>
+      <div class="class-row-time">10:00 am</div>
+      <div><span class="class-row-level">Beginner</span></div>
+      <div class="class-row-book">Book <span>→</span></div>
+    </div>
+
+    <div class="class-row" data-type="fusion" onclick="location.href='contact.html'">
+      <div>
+        <div class="class-row-name">Semi-Classical Fusion</div>
+        <div class="class-row-style">Fusion · with Shrinali</div>
+      </div>
+      <div class="class-row-day">Tuesday</div>
+      <div class="class-row-time">7:00 pm</div>
+      <div><span class="class-row-level">All Levels</span></div>
+      <div class="class-row-book">Book <span>→</span></div>
+    </div>
+
+    <div class="class-row" data-type="kathak" onclick="location.href='contact.html'">
+      <div>
+        <div class="class-row-name">Kathak Intensive</div>
+        <div class="class-row-style">Kathak · with Aishwarya</div>
+      </div>
+      <div class="class-row-day">Thursday</div>
+      <div class="class-row-time">7:00 pm</div>
+      <div><span class="class-row-level">Intermediate</span></div>
+      <div class="class-row-book">Book <span>→</span></div>
+    </div>
+
+    <div class="class-row" data-type="bharatanatyam" onclick="location.href='contact.html'">
+      <div>
+        <div class="class-row-name">Bharatanatyam Basics</div>
+        <div class="class-row-style">Bharatanatyam · with Shrinali</div>
+      </div>
+      <div class="class-row-day">Wednesday</div>
+      <div class="class-row-time">6:30 pm</div>
+      <div><span class="class-row-level">Beginner</span></div>
+      <div class="class-row-book">Book <span>→</span></div>
+    </div>
+
+    <div class="class-row" data-type="fusion" onclick="location.href='contact.html'">
+      <div>
+        <div class="class-row-name">Bollywood Fusion</div>
+        <div class="class-row-style">Fusion · with Shrinali</div>
+      </div>
+      <div class="class-row-day">Saturday</div>
+      <div class="class-row-time">11:00 am</div>
+      <div><span class="class-row-level">All Levels</span></div>
+      <div class="class-row-book">Book <span>→</span></div>
+    </div>
+
+    <div class="class-row" data-type="youth" onclick="location.href='contact.html'">
+      <div>
+        <div class="class-row-name">Little Peacocks</div>
+        <div class="class-row-style">Youth · with Aishwarya & Shrinali</div>
+      </div>
+      <div class="class-row-day">Saturday</div>
+      <div class="class-row-time">9:30 am</div>
+      <div><span class="class-row-level">Ages 6–14</span></div>
+      <div class="class-row-book">Book <span>→</span></div>
+    </div>
+
+  </div>
+
+  <!-- Detail cards -->
+  <div class="class-cards">
+
+    <div class="class-card card-kathak anim d1">
+      <div class="class-card-color"></div>
+      <div class="class-card-body">
+        <div class="class-card-name">Kathak Foundations</div>
+        <div class="class-card-meta">
+          <span>Sundays · 10:00 am</span>
+          <span>With Aishwarya R.</span>
+        </div>
+        <p class="class-card-desc">Learn the core vocabulary of Kathak — footwork, spins, hand gestures (mudras), and basic compositions. No prior experience needed.</p>
+      </div>
+      <div class="class-card-footer">
+        <span class="class-card-level">Beginner · Open Level</span>
+        <a href="contact.html" class="class-card-link">Book →</a>
+      </div>
+    </div>
+
+    <div class="class-card card-bharata anim d2">
+      <div class="class-card-color"></div>
+      <div class="class-card-body">
+        <div class="class-card-name">Bharatanatyam Basics</div>
+        <div class="class-card-meta">
+          <span>Wednesdays · 6:30 pm</span>
+          <span>With Shrinali P.</span>
+        </div>
+        <p class="class-card-desc">An introduction to Bharatanatyam — adavus (basic steps), hand gestures, and the foundational postures of this ancient South Indian form.</p>
+      </div>
+      <div class="class-card-footer">
+        <span class="class-card-level">Beginner</span>
+        <a href="contact.html" class="class-card-link">Book →</a>
+      </div>
+    </div>
+
+    <div class="class-card card-fusion anim d3">
+      <div class="class-card-color"></div>
+      <div class="class-card-body">
+        <div class="class-card-name">Semi-Classical Fusion</div>
+        <div class="class-card-meta">
+          <span>Tuesdays · 7:00 pm</span>
+          <span>With Shrinali P.</span>
+        </div>
+        <p class="class-card-desc">Classical technique meets expressive storytelling — the perfect bridge between tradition and contemporary feeling. Open to all.</p>
+      </div>
+      <div class="class-card-footer">
+        <span class="class-card-level">All Levels</span>
+        <a href="contact.html" class="class-card-link">Book →</a>
+      </div>
+    </div>
+
+    <div class="class-card card-kathak anim d1">
+      <div class="class-card-color"></div>
+      <div class="class-card-body">
+        <div class="class-card-name">Kathak Intensive</div>
+        <div class="class-card-meta">
+          <span>Thursdays · 7:00 pm</span>
+          <span>With Aishwarya R.</span>
+        </div>
+        <p class="class-card-desc">Deeper study of taal, layakari, and abhinaya for students who want to go further. Some prior experience recommended.</p>
+      </div>
+      <div class="class-card-footer">
+        <span class="class-card-level">Intermediate</span>
+        <a href="contact.html" class="class-card-link">Book →</a>
+      </div>
+    </div>
+
+    <div class="class-card card-fusion anim d2">
+      <div class="class-card-color"></div>
+      <div class="class-card-body">
+        <div class="class-card-name">Bollywood Fusion</div>
+        <div class="class-card-meta">
+          <span>Saturdays · 11:00 am</span>
+          <span>With Shrinali P.</span>
+        </div>
+        <p class="class-card-desc">High-energy choreography rooted in classical form. A great entry point for those new to Indian dance styles.</p>
+      </div>
+      <div class="class-card-footer">
+        <span class="class-card-level">All Levels</span>
+        <a href="contact.html" class="class-card-link">Book →</a>
+      </div>
+    </div>
+
+    <div class="class-card card-youth anim d3">
+      <div class="class-card-color"></div>
+      <div class="class-card-body">
+        <div class="class-card-name">Little Peacocks</div>
+        <div class="class-card-meta">
+          <span>Saturdays · 9:30 am</span>
+          <span>With Aishwarya & Shrinali</span>
+        </div>
+        <p class="class-card-desc">A joyful introduction to Indian classical dance for young movers — rhythm, coordination, storytelling, and play.</p>
+      </div>
+      <div class="class-card-footer">
+        <span class="class-card-level">Ages 6–14</span>
+        <a href="contact.html" class="class-card-link">Book →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Private note -->
+  <div class="private-note anim">
+    <div>
+      <h3>Private & one-on-one sessions</h3>
+      <p>Looking for something more tailored? We offer private sessions for individuals and small groups — perfect for performance prep, wedding choreography, or dedicated personal study. Get in touch to discuss what you need.</p>
+    </div>
+    <a href="contact.html" class="btn-dark">Get in touch</a>
+  </div>
+
+</div>
+
+<footer>
+  <div>
+    <div class="footer-logo-main">Mor Group</div>
+    <div class="footer-logo-sub">Kathak · Bharatanatyam · NYC</div>
+  </div>
+  <div class="footer-copy">© 2025 Mor Group. All rights reserved.</div>
+  <ul class="footer-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="classes.html">Classes</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+function openMenu()  { document.getElementById('mobileMenu').classList.add('open'); }
+function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+const anims = document.querySelectorAll('.anim');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.08 });
+anims.forEach(el => obs.observe(el));
+
+function filterClass(btn, type) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.class-row').forEach(row => {
+    row.style.display = (type === 'all' || row.dataset.type === type) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>
