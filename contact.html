@@ -4,95 +4,115 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Contact · Mor Group</title>
-<meta name="description" content="Get in touch with Mor Group to book a class or ask a question." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="css/style.css" />
 <style>
+
 .contact-body {
-  display: grid; grid-template-columns: 1fr 1.2fr;
-  background: var(--bg); min-height: 60vh;
+  display: grid; grid-template-columns: 1fr 1.3fr;
+  border-bottom: 1px solid var(--rule); min-height: 65vh;
 }
 
-/* Left panel */
+/* Left */
 .contact-info {
-  background: var(--bg-alt);
-  padding: 5rem 4rem; border-right: 1px solid var(--border);
+  padding: 5rem 4rem; border-right: 1px solid var(--rule);
   display: flex; flex-direction: column; gap: 2.5rem;
+  background: var(--cream-warm); position: relative; overflow: hidden;
 }
-.contact-info .stitle { margin-bottom: 0.25rem; }
+
+/* Ink dancer in background */
+.contact-bg-dancer {
+  position: absolute; bottom: -2rem; right: -2rem;
+  width: 220px; opacity: 0.05; pointer-events: none; transform: scaleX(-1);
+}
+
+.contact-info-title {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem); color: var(--ink); line-height: 1.2;
+  border-bottom: 1px solid var(--rule); padding-bottom: 1.5rem;
+}
 .contact-lead {
-  font-size: 0.93rem; color: var(--text-mid); line-height: 1.85; font-weight: 300;
+  font-family: 'EB Garamond', serif; font-style: italic;
+  font-size: 1rem; color: var(--ink-mid); line-height: 1.85;
 }
 .contact-detail { display: flex; gap: 1rem; align-items: flex-start; }
 .contact-icon {
-  width: 38px; height: 38px; border-radius: 50%;
-  background: var(--teal-pale); display: flex; align-items: center;
-  justify-content: center; font-size: 0.9rem; flex-shrink: 0;
+  width: 32px; height: 32px; border: 1px solid var(--rule);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; flex-shrink: 0;
 }
 .contact-label {
-  font-size: 0.63rem; text-transform: uppercase; letter-spacing: 0.16em;
-  color: var(--teal); margin-bottom: 0.2rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.2rem;
 }
-.contact-value { font-size: 0.9rem; color: var(--text); font-weight: 300; line-height: 1.55; }
+.contact-value { font-size: 0.92rem; color: var(--ink-mid); line-height: 1.5; }
 .contact-note {
-  padding-top: 2rem; border-top: 1px solid var(--border);
-  font-family: 'Playfair Display', serif; font-style: italic;
-  font-size: 1rem; color: var(--text-mid); line-height: 1.7;
+  font-family: 'EB Garamond', serif; font-style: italic;
+  font-size: 0.95rem; color: var(--ink-faint); line-height: 1.7;
+  border-top: 1px solid var(--rule); padding-top: 1.5rem;
 }
 
-/* Right panel — form */
+/* Right — form */
 .contact-form-wrap { padding: 5rem 4rem; }
-.contact-form-wrap .stag { margin-bottom: 1.5rem; }
-
+.form-title {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 1.5rem; color: var(--ink); margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--rule); padding-bottom: 1.25rem;
+}
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.form-group { margin-bottom: 1.2rem; }
+.form-group { margin-bottom: 1.25rem; }
 .form-group label {
-  display: block; font-size: 0.63rem; text-transform: uppercase;
-  letter-spacing: 0.16em; color: var(--text-muted); margin-bottom: 0.45rem;
+  display: block; font-family: 'Jost', sans-serif;
+  font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-faint); margin-bottom: 0.4rem;
 }
 .form-group input,
 .form-group select,
 .form-group textarea {
-  width: 100%; padding: 0.78rem 1rem;
-  border: 1px solid var(--teal-pale); border-radius: var(--radius);
-  background: var(--bg-alt); color: var(--text);
-  font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 300;
-  outline: none; transition: border-color 0.25s; appearance: none;
+  width: 100%; padding: 0.7rem 0;
+  border: none; border-bottom: 1px solid var(--rule);
+  background: transparent; color: var(--ink);
+  font-family: 'EB Garamond', serif; font-size: 1rem;
+  outline: none; transition: border-color 0.2s; appearance: none;
 }
 .form-group input:focus,
 .form-group select:focus,
-.form-group textarea:focus { border-color: var(--teal); }
-.form-group textarea { height: 130px; resize: vertical; }
+.form-group textarea:focus { border-bottom-color: var(--ink); }
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: var(--ink-faint); font-style: italic; }
+.form-group textarea { height: 100px; resize: none; }
 .form-group select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%234A7C6F'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 1rem center;
-  padding-right: 2.5rem; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%23B8AFA6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 0 center;
+  padding-right: 1rem; cursor: pointer; color: var(--ink-mid);
 }
+.form-group select option { background: var(--cream); }
 
 .btn-submit {
   display: block; width: 100%; text-align: center;
-  background: var(--bg-dark); color: var(--text-inv);
-  padding: 1rem; border-radius: var(--radius);
-  font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
-  font-weight: 500; border: none; cursor: pointer;
-  font-family: 'Jost', sans-serif; transition: background 0.25s; margin-top: 0.5rem;
+  background: var(--ink); color: var(--cream);
+  padding: 0.9rem; border: none; cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+  transition: background 0.2s; margin-top: 0.5rem;
 }
 .btn-submit:hover { background: var(--teal); }
-.form-success {
-  display: none; text-align: center; padding: 2rem;
-  font-family: 'Playfair Display', serif; font-style: italic;
-  font-size: 1.1rem; color: var(--teal); line-height: 1.7;
-}
 .form-note {
   text-align: center; margin-top: 0.85rem;
-  font-size: 0.78rem; color: var(--text-muted); font-weight: 300;
+  font-family: 'EB Garamond', serif; font-style: italic;
+  font-size: 0.88rem; color: var(--ink-faint);
+}
+.form-success {
+  display: none; padding: 3rem 0; text-align: center;
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 1.3rem; color: var(--teal); line-height: 1.7;
 }
 
 @media (max-width: 820px) {
   .contact-body { grid-template-columns: 1fr; }
-  .contact-info { padding: 4rem 1.5rem; border-right: none; border-bottom: 1px solid var(--border); gap: 2rem; }
+  .contact-info { padding: 4rem 1.5rem; border-right: none; border-bottom: 1px solid var(--rule); gap: 2rem; }
   .contact-form-wrap { padding: 4rem 1.5rem; }
   .form-row { grid-template-columns: 1fr; }
 }
@@ -103,7 +123,7 @@
 <nav id="nav">
   <a href="index.html" class="nav-logo">
     <span class="nav-logo-main">Mor Group</span>
-    <span class="nav-logo-sub">Kathak · Bharatanatyam · NYC</span>
+    <span class="nav-logo-hindi">मोर — the peacock</span>
   </a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
@@ -127,25 +147,36 @@
 </div>
 
 <div class="page-header">
-  <div class="page-header-eyebrow">Say hello</div>
-  <h1>Get in <em>touch</em></h1>
-  <p class="page-header-sub">
-    Questions, bookings, or just curious — we'd love to hear from you.
-    We reply within 24 hours.
-  </p>
+  <div class="page-header-rule">
+    <span class="page-header-eyebrow">Say hello</span>
+  </div>
+  <h1>Write<br>to <em>us</em></h1>
+  <p class="page-header-sub">Questions, bookings, or just curious — we'd love to hear from you. We reply within 24 hours.</p>
 </div>
 
 <div class="contact-body">
-  <!-- Info panel -->
+
+  <!-- Info -->
   <div class="contact-info anim">
-    <div>
-      <div class="stag">Find us</div>
-      <h2 class="stitle">Mor Group<br><em>NYC</em></h2>
-    </div>
+
+    <!-- Background dancer -->
+    <svg class="contact-bg-dancer" viewBox="0 0 200 320" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <ellipse cx="100" cy="35" rx="16" ry="18" stroke="#1A1612" stroke-width="1.5" fill="none"/>
+      <path d="M84 48 L84 62 M116 48 L116 62" stroke="#1A1612" stroke-width="1.4"/>
+      <path d="M84 62 C80 78 78 98 80 118 C82 138 88 148 100 152 C112 148 118 138 120 118 C122 98 120 78 116 62" stroke="#1A1612" stroke-width="1.6" fill="none"/>
+      <path d="M116 72 C126 68 144 62 162 52 C172 46 180 42 188 40" stroke="#1A1612" stroke-width="1.4" fill="none"/>
+      <path d="M84 72 C74 70 58 72 46 78 C38 82 34 90 36 98" stroke="#1A1612" stroke-width="1.4" fill="none"/>
+      <path d="M80 118 C72 130 60 152 50 178 C42 200 38 224 38 244" stroke="#1A1612" stroke-width="1.5"/>
+      <path d="M120 118 C128 130 140 152 150 178 C158 200 162 224 162 244" stroke="#1A1612" stroke-width="1.5"/>
+      <path d="M38 244 C34 256 34 268 38 278" stroke="#1A1612" stroke-width="1.3"/>
+      <path d="M162 244 C166 256 166 268 162 278" stroke="#1A1612" stroke-width="1.3"/>
+    </svg>
+
+    <div class="contact-info-title">Mor Group,<br>New York City</div>
 
     <p class="contact-lead">
-      We're a small studio — classes are kept intentionally intimate.
-      If you're curious about any session, just reach out and we'll make it work.
+      We are a small studio — classes are kept intentionally intimate.
+      If you're curious about any session, reach out and we will make it work.
     </p>
 
     <div class="contact-detail">
@@ -173,20 +204,20 @@
     </div>
 
     <p class="contact-note">
-      "Your first class is always complimentary. Come with an open mind and comfortable clothes."
+      "Your first class is always complimentary.<br>Come with an open mind and comfortable clothes."
     </p>
   </div>
 
-  <!-- Form panel -->
+  <!-- Form -->
   <div class="contact-form-wrap anim d2">
-    <div class="stag">Book or enquire</div>
+    <div class="form-title">Book or enquire</div>
 
     <!--
       TO MAKE LIVE (free):
       1. Sign up at formspree.io
-      2. Set action="https://formspree.io/f/YOUR_FORM_ID"
+      2. Set action="https://formspree.io/f/YOUR_ID"
       3. Set method="POST"
-      4. Remove onsubmit="..."
+      4. Remove onsubmit="handleForm(event)"
     -->
     <form id="contact-form" action="#" method="POST" onsubmit="handleForm(event)">
       <div class="form-row">
@@ -199,12 +230,10 @@
           <input type="text" id="lname" name="last_name" placeholder="Sharma" required />
         </div>
       </div>
-
       <div class="form-group">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" placeholder="you@email.com" required />
       </div>
-
       <div class="form-group">
         <label for="cls">I'm interested in</label>
         <select id="cls" name="class">
@@ -219,7 +248,6 @@
           <option>Just exploring!</option>
         </select>
       </div>
-
       <div class="form-group">
         <label for="exp">My dance experience</label>
         <select id="exp" name="experience">
@@ -229,27 +257,26 @@
           <option>Trained dancer</option>
         </select>
       </div>
-
       <div class="form-group">
         <label for="msg">Anything else?</label>
-        <textarea id="msg" name="message" placeholder="Questions, goals, or just say hi…"></textarea>
+        <textarea id="msg" name="message" placeholder="Questions, goals, or just say hello…"></textarea>
       </div>
-
       <button type="submit" class="btn-submit">Send Message</button>
       <p class="form-note">We reply within 24 hours.</p>
     </form>
 
     <div class="form-success" id="form-success">
       Message received — thank you.<br>
-      We'll be in touch with you very soon.
+      We will be in touch very soon.
     </div>
   </div>
+
 </div>
 
 <footer>
-  <div>
-    <div class="footer-logo-main">Mor Group</div>
-    <div class="footer-logo-sub">Kathak · Bharatanatyam · NYC</div>
+  <div class="footer-logo">
+    Mor Group
+    <span>Kathak · Bharatanatyam · New York City</span>
   </div>
   <div class="footer-copy">© 2025 Mor Group. All rights reserved.</div>
   <ul class="footer-links">
@@ -267,10 +294,9 @@ function openMenu()  { document.getElementById('mobileMenu').classList.add('open
 function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
 const anims = document.querySelectorAll('.anim');
 const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
 }, { threshold: 0.08 });
 anims.forEach(el => obs.observe(el));
-
 function handleForm(e) {
   e.preventDefault();
   document.getElementById('contact-form').style.display = 'none';
